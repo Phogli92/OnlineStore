@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Elements from "./Elements";
+import Elements from "../Component/Elements";
 
 function Products() {
   let [products, setProducts] = useState([]);
@@ -14,8 +14,8 @@ function Products() {
   return (
     <>
       <div className="ele">
-        {products.map((v) => {
-          return <Elements key={v.id} image={v.image} v={v}/>;
+        {products.map((item) => {
+          return <Elements key={item.id} image={item.image} item={item}/>;
         })}
       </div>
     </>
