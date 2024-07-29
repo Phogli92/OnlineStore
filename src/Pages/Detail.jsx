@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import './Detail.css'
 
 function Detail() {
   const { id } = useParams();
+  const navigate = useNavigate()
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(false);
   useEffect(() => {
@@ -15,13 +17,26 @@ function Detail() {
     return <h1>Loading ...</h1>;
   }
 
+  const goBack = ()=>navigate(-1)
+
   return (
     <>
-      <img width={300} height={300} src={items?.image} alt={items?.title} />
-      <h1 style={{fontSize:'28px'}}>{items?.title}</h1>
-      <h2>Category: {items?.category}👕</h2>
-      <h2>Price💲:{items?.price}$</h2>
-      <h2>Rating⭐️:{items?.rating?.rate}✨</h2>
+    <div class="parent">
+  <div class="card">
+      {/* <img width={300} height={300}src={items?.image} alt={items?.title} /> */}
+      <div class="content-box" style={{backgroundImage:`url(${items?.image})`, backgroundSize:'300px 250px', backgroundRepeat:'no-repeat', marginTop:0}}>
+          <span class="card-title">{items?.title}</span>
+          <p class="card-content">
+            Category:{items?.category}👕
+          </p>
+          <button class="see-more">Go Back</button>
+      </div>
+      <div class="date-box">
+          <span class="month">Price💲</span>
+          <span class="date">{items?.price}$</span>
+      </div>
+  </div>
+</div>
     </>
   );
 }
